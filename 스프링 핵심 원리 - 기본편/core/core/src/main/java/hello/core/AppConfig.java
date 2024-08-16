@@ -18,7 +18,6 @@ import org.springframework.context.annotation.Configuration; //@Configuration �
 // 구체 클래스를 appconfig가 직접 선택하고 애플리케이션이 어떻게 동작해야 할지 전체 구성을 책임진다.
 // 각 배우들은 담당 기능을 실행하는 책임만 지면 된다.
 
-@Configuration
 // @스프링 컨테이너는 @Configuratoin이 붙은 appconfig 를 구성 정보롤 사용하고
 // @Bean이 붙은 메소드르 모두 호출해서 반환된 객체를 스프링 컨테이너에 등록
 // applicationContext.getBean() 을 통해서 객체를 가져옴
@@ -27,17 +26,24 @@ import org.springframework.context.annotation.Configuration; //@Configuration �
 // ----------------------------------------------이거에 대한 해답은 앞으로의 강의를 들으면서,,
 
 // 주의) 빈의 이름은 항상 다른 이름을 부여해야한다.
+@Configuration
 public class AppConfig {
+
+    //@Bean memberService -> new MemoryMemberRepository()
+    //@Bean orderService -> new MemoryMemberRepository()
     @Bean
     public MemberService memberService(){
+        System.out.println("call AppConfig.memberService");
         return new MemberServiceImpl(memberRepository());
     }
     @Bean
-    private static MemberRepository memberRepository() {
+    public MemberRepository memberRepository() {
+        System.out.println("call AppConfig.memberRepository");
         return new MemoryMemberRepository();
     }
     @Bean
     public OrderService orderService(){
+        System.out.println("call AppConfig.orderService");
         return new OrderSeriveImpl(memberRepository(), discountPolicy());
     }
     @Bean
