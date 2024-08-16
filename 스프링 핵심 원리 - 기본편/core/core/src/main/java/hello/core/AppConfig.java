@@ -25,6 +25,8 @@ import org.springframework.context.annotation.Configuration; //@Configuration �
 // 기존에는 자바코드를 통해서 개발자가 직접 모든것을 했다면, 이제부터는 스프링 컨테이너에 객체를 스프링 빈으로 등록하고 스프링 컨테이너에서 스프링 빈을 찾아서 사용
 // 코드가 약간 더 복잡해진 것 같은데, 스프링 컨테이너를 사용하면 어떤 장점이 있을까??
 // ----------------------------------------------이거에 대한 해답은 앞으로의 강의를 들으면서,,
+
+// 주의) 빈의 이름은 항상 다른 이름을 부여해야한다.
 public class AppConfig {
     @Bean
     public MemberService memberService(){
