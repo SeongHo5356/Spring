@@ -1,5 +1,9 @@
 package hello.core;
 
+import hello.core.member.MemberRepository;
+import hello.core.member.MemoryMemberRepository;
+import hello.core.order.OrderService;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.FilterType;
@@ -12,5 +16,8 @@ import org.springframework.context.annotation.FilterType;
 
 )
 public class AutoAppConfig {
-
+    @Bean(name = "memoryMemberRepository") // 수동 빈이 자동 빈보다 우선권을 가지고 bean에 등록됨
+    public MemberRepository memberRepository(){
+        return new MemoryMemberRepository();
+    }
 }

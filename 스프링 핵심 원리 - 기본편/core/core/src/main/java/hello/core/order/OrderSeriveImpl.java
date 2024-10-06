@@ -15,14 +15,35 @@ public class OrderSeriveImpl implements OrderService{
     private final MemberRepository memberRepository;
     private final DiscountPolicy discountPolicy;
 
+//    @Autowired(required = false)
+//    public void setMemberRepository(MemberRepository memberRepository) {
+//        System.out.println("memberRepository = " + memberRepository);
+//        this.memberRepository = memberRepository;
+//    }
+//
+//    @Autowired
+//    public void setDiscountPolicy(DiscountPolicy discountPolicy) {
+//        System.out.println("discountPolicy = " + discountPolicy);
+//        this.discountPolicy = discountPolicy;
+//    }
+
     @Autowired
     public OrderSeriveImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+        System.out.println("1. memberRepository = " + memberRepository);
+        System.out.println("1. discountPolicy = " + discountPolicy);
         this.memberRepository = memberRepository;
         this.discountPolicy = discountPolicy;
     }
 // private DiscountPolicy discountPolicy = new RateDiscountPolicy(); //-> 오더 서비스가 직접 배우를 섭외 --> 잘못됨
     // 관심사의 분리를 진행하자
     // 공연 기획자를 만들고 배우와 공연 기획자의 책임을 확실히 분리하자. --> AppConfig 등장
+
+//    @Autowired
+//    public void init(MemberRepository memberRepository, DiscountPolicy discountPolicy){
+//        this.memberRepository = memberRepository;
+//        this.discountPolicy = discountPolicy;
+//
+//    }
 
     @Override
     public Order createOrder(Long memberId, String itemName, int itemPrice) {
